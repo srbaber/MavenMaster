@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteRepositoriesConfiguration">
+    <remote-repository>
+      <option name="id" value="wabtec-samp" />
+      <option name="name" value="SAMP Releases" />
+      <option name="url" value="http://jfrog.de.corp.wabtec.com:8082/artifactory/SAMP" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="wabtec-xfswu-snapshot" />
+      <option name="name" value="Wabtec XFSWU SNAPSHOTS" />
+      <option name="url" value="http://jfrog.de.corp.wabtec.com:8082/artifactory/XFSWU-SNAPSHOT" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="wabtec-empire" />
+      <option name="name" value="Wabtec ATWKQ" />
+      <option name="url" value="http://jfrog.de.corp.wabtec.com:8082/artifactory/ATWKQ" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="wabtec-redhat" />
+      <option name="name" value="Wabtec RedHat Mirror" />
+      <option name="url" value="http://jfrog.de.corp.wabtec.com:8082/artifactory/redhat" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Maven Central repository" />
+      <option name="url" value="https://repo1.maven.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="wabtec-samp-snapshot" />
+      <option name="name" value="SAMP Snapshots" />
+      <option name="url" value="http://jfrog.de.corp.wabtec.com:8082/artifactory/SAMP-SNAPSHOT" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="jboss.community" />
+      <option name="name" value="JBoss Community repository" />
+      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="wabtec-central" />
+      <option name="name" value="Wabtec Central Mirror" />
+      <option name="url" value="http://jfrog.de.corp.wabtec.com:8082/artifactory/repo1" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="wabtec-empire-snapshot" />
+      <option name="name" value="Wabtec ATWKQ SNAPSHOTS" />
+      <option name="url" value="http://jfrog.de.corp.wabtec.com:8082/artifactory/ATWKQ-SNAPSHOT" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Central Repository" />
+      <option name="url" value="http://jfrog.de.corp.wabtec.com:8082/artifactory/repo1" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="wabtec-xfswu" />
+      <option name="name" value="Wabtec XFSWU" />
+      <option name="url" value="http://jfrog.de.corp.wabtec.com:8082/artifactory/XFSWU" />
+    </remote-repository>
+  </component>
+</project>
