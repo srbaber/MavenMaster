@@ -17,7 +17,7 @@ public class MavenMasterTest {
 
     @BeforeAll
     public static void init() {
-        mavenMaster.TEST_ONLY = true;
+        mavenMaster.DRYRUN_ONLY = true;
     }
 
     @Test
@@ -43,7 +43,7 @@ public class MavenMasterTest {
 
     @Test
     public void canProcessAllPoms() {
-        mavenMaster.TEST_ONLY = false;
+        mavenMaster.DRYRUN_ONLY = false;
         mavenMaster.execute();
     }
 }
