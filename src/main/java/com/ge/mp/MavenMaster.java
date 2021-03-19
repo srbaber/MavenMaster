@@ -245,9 +245,9 @@ public class MavenMaster {
                 .filter(HasIncorrectScope)
                 .collect(Collectors.toList());
 
-        updateParent(model);
-        //updateVersion(model);
-        cleanupVersionProperties(model);
+        // updateParent(model);
+        updateVersion(model);
+        // cleanupVersionProperties(model);
         // cleanupVersionDependencies(model);
 
         if (!dependenciesToAlter.isEmpty()) {
@@ -360,7 +360,7 @@ public class MavenMaster {
                 log.warn("NV-BOM version unchanged for project {}", model.getArtifactId());
                 return;
             } else {
-                log.info("NV-BOM version updated for project {} {} {}:{}", model.getArtifactId(), key, oldVersion, newVersion);
+                log.info("NV-BOM version updated for project {} {} {}:{}", model.getArtifactId(), key, bomVersion, newVersion);
                 nvBomModel.getProperties().setProperty(key, newVersion);
                 parseMavenPomModelToXmlString(NV_BOM, nvBomModel);
             }
@@ -385,20 +385,22 @@ public class MavenMaster {
             Version version = Version.parse(oldVersion);
             //version.addMajor(1);
             //version.setMinor(0);
-            version.setBuild(1);
+            //version.setBuild(1);
             version.setSuffix(null);
 
             String newVersion = version.toStringWithPrefixAndSuffix(3);
 
-            if (useParentPom) {
-                log.info("Altering parent version {} {}:{}", model.getArtifactId(), oldVersion, newVersion);
-                model.getParent().setVersion(newVersion);
-            } else {
-                log.info("Altering version {} {}:{}", model.getArtifactId(), oldVersion, newVersion);
-                model.setVersion(newVersion);
+            if (!oldVersion.equals(newVersion)) {
+                if (useParentPom) {
+                    log.info("Altering parent version {} {}:{}", model.getArtifactId(), oldVersion, newVersion);
+                    model.getParent().setVersion(newVersion);
+                } else {
+                    log.info("Altering version {} {}:{}", model.getArtifactId(), oldVersion, newVersion);
+                    model.setVersion(newVersion);
+                }
             }
-
             updateNVBom(model, oldVersion, newVersion);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
