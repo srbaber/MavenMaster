@@ -103,6 +103,11 @@ public class MavenMasterTest {
                                 }
                             }
                         }
+                        if ("-SNAPSHOT".equals(newVersion.getSuffix()))
+                        {
+                            log.info("project is snapshot version {} {}:{}", key, oldValue, newValue);
+                            fail =true;
+                        }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

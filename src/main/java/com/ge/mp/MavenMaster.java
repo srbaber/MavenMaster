@@ -247,7 +247,7 @@ public class MavenMaster {
                 .collect(Collectors.toList());
 
         // updateParent(model);
-        // updateVersion(model);
+        updateVersion(model);
         // cleanupVersionProperties(model);
         // cleanupVersionDependencies(model);
 
@@ -392,7 +392,7 @@ public class MavenMaster {
             //version.addMajor(1);
             //version.setMinor(0);
             //version.setBuild(1);
-            version.setSuffix("-SNAPSHOT");
+            version.setSuffix(null);
 
             String newVersion = version.toStringWithPrefixAndSuffix(3);
 
