@@ -50,7 +50,7 @@ public class MavenMasterTest {
 
     @Test
     public void canProcessAllPoms() {
-        mavenMaster.DRYRUN_ONLY = false;
+        mavenMaster.DRYRUN_ONLY = true;
         mavenMaster.execute();
     }
 
