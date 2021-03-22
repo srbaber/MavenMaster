@@ -60,6 +60,7 @@ public class MavenMaster {
     static final Map<String, String> UPDATED_PROPERTIES = new HashMap() {{
         put("mp-jackson.version", "2.0.1");
         put("mp-liquibase.version", "2.0.1");
+        put("rtmp-java-bom.version", "12.10.1");
     }};
 
     static final List<String> PROJECTS_NEED_MP_LIQUIBASE = Arrays.asList("ar-services",
@@ -246,7 +247,7 @@ public class MavenMaster {
                 .collect(Collectors.toList());
 
         // updateParent(model);
-        updateVersion(model);
+        // updateVersion(model);
         // cleanupVersionProperties(model);
         // cleanupVersionDependencies(model);
 
@@ -269,14 +270,15 @@ public class MavenMaster {
 
         model.getDependencies().stream()
                 .filter(dependency -> REQUIRES_VERSION.contains(dependency.getArtifactId()))
+                .filter(dependency -> !dependencyVersion(dependency).equals(dependency.getVersion()))
                 .peek(dependency -> log.info("Version set for project {} artifact {}", model.getArtifactId(), dependency.getArtifactId()))
                 .forEach(dependency -> {
-                    String key = dependency.getArtifactId() + ".version";
-                    dependency.setVersion("${" + key + "}");
+                    dependency.setVersion(dependencyVersion(dependency));
                 });
 
         PROJECTS_NEED_MP_LIQUIBASE.stream()
                 .filter(projectName -> model.getPomFile().getAbsolutePath().endsWith(projectName + "/pom.xml"))
+                .filter(projectName -> !model.getProperties().containsKey("mp-liquibase.version"))
                 .peek(projectName -> log.info("Property added for project {} mp-liquibase.version ", model.getArtifactId()))
                 .forEach(projectName -> model.getProperties().putIfAbsent("mp-liquibase.version", ""));
 
@@ -285,6 +287,10 @@ public class MavenMaster {
                 .filter(entry -> !entry.getValue().equals(model.getProperties().getProperty(entry.getKey())))
                 .peek(entry -> log.info("Property set for project {} {} {}:{}", model.getArtifactId(), entry.getKey(), model.getProperties().getProperty(entry.getKey()), entry.getValue()))
                 .forEach(entry -> model.getProperties().setProperty(entry.getKey(), entry.getValue()));
+    }
+
+    private String dependencyVersion(Dependency dependency) {
+        return "${" + dependency.getArtifactId() + ".version}";
     }
 
     public String dependencyKey(Dependency dependency) {
@@ -386,7 +392,7 @@ public class MavenMaster {
             //version.addMajor(1);
             //version.setMinor(0);
             //version.setBuild(1);
-            version.setSuffix(null);
+            version.setSuffix("-SNAPSHOT");
 
             String newVersion = version.toStringWithPrefixAndSuffix(3);
 
